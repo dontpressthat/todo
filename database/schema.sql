@@ -1,0 +1,12 @@
+DROP DATABASE IF EXISTS todo;
+
+CREATE DATABASE todo;
+
+USE todo;
+
+CREATE TABLE tasks (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  task_name VARCHAR (20) NOT NULL UNIQUE KEY,
+  due_date VARCHAR (8) NOT NULL,
+  is_done BOOLEAN DEFAULT false
+);
