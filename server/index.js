@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { getAllTasks, addTask, changeChecked } = require('../database');
+const { getAllTasks, addTask, changeChecked, removeTask } = require('../database');
 
 const port = 3001;
 const app = express();
@@ -33,6 +33,14 @@ app.put('/api/todo', (req, res) => {
       throw err;
     });
 });
+
+app.delete('/api/todo', (req, res) => {
+    removeTask(req.body)
+      .then((results) => res.status(200).json(results))
+      .catch((err) => {
+        throw err;
+      });
+  });
 
 app.listen(port, () => {
     console.log(`listening on port ${port}`);

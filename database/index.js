@@ -3,7 +3,7 @@ const mysql = require('mysql');
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'secret00',
+  password: 'Secret00',
   database: 'todo',
 });
 
@@ -52,4 +52,18 @@ const changeChecked = (data) => {
   });
 };
 
-module.exports = { getAllTasks, addTask, changeChecked };
+const removeTask = data => {
+  const { id } = data;
+
+  return new Promise((resolve, reject) => {
+    const query = `DELETE FROM tasks WHERE id = ${id}`;
+    connection.query(query, (err, result) => {
+      if (err) {
+        return reject(err);
+      }
+      resolve(result);
+    });
+  });
+};
+
+module.exports = { getAllTasks, addTask, changeChecked, removeTask };
