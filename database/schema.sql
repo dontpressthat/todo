@@ -6,7 +6,7 @@ USE todo;
 
 CREATE TABLE tasks (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  task_name VARCHAR (20) NOT NULL UNIQUE KEY,
+  task_name VARCHAR (50) NOT NULL,
   due_date VARCHAR (8) NOT NULL,
   is_done BOOLEAN DEFAULT false
 );

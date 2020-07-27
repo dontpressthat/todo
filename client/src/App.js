@@ -19,25 +19,23 @@ class App extends React.Component {
       taskList: []
     };
 
-    // this.addItem = this.addItem.bind(this);
     this.addTask = this.addTask.bind(this);
     this.getTasks = this.getTasks.bind(this);
     this.handleCheckBox = this.handleCheckBox.bind(this);
   };
 
-  // addItem(itemObj) {
-  //   this.setState({
-  //     taskList: [
-  //       ...this.state.taskList,
-  //       itemObj
-  //     ]
-  //   });
-  // };
+
+  componentDidMount() {
+    this.getTasks();
+  };
 
   getTasks() {
     axios.get('/api/todo')
     .then(response => {
-      console.log(response);
+      // console.log(response);
+      this.setState({
+        taskList: response.data
+      });
     })
     .catch(err => {
       console.log(err);
@@ -50,8 +48,8 @@ class App extends React.Component {
         task: task
       }
     })
-    .then(response => {
-      console.log(response);
+    .then(() => {
+      this.getTasks();
     })
     .catch(err => {
       console.log(err);
@@ -59,21 +57,22 @@ class App extends React.Component {
   };
 
   handleCheckBox(bool, id) {
-
-    console.log(bool, id)
-    // axios.put('/api/todo', {
-    //   params: {
-    //     bool: bool,
-    //     id: id
-    //   }
-    // })
+    axios.put('/api/todo', {
+      params: {
+        bool: bool,
+        id: id
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    })
   };
 
   render() {
     const { taskList } = this.state;
 
     return (
-    <Container>
+    <Container width='700px'>
       <TodoList taskList={taskList} addTask={this.addTask} handleCheckBox={this.handleCheckBox} />
     </Container>
     )

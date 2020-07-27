@@ -34,10 +34,14 @@ const AddToList = ({ name, addTask }) => {
 
   return (
     <Container display='flex' direction='row' justify='space-between' align='center'>
-      <Input name='taskName' placeholder='Add Task' width='60%' onChange={handleInput} value={task.taskName} />
-      <Input name='dueDate' placeholder='Due Date' width='40%' onChange={handleInput} value={task.dueDate} />
+      <Container width='75%' padding='0 20px 0 20px'  margin='0 0 0 40px'>
+        <Input name='taskName' placeholder='Add Task' width='100%' onChange={handleInput} value={task.taskName} />
+      </Container>
+      <Container width='25%' display='flex' direction='row' justify='space-between'>
+        <Input name='dueDate' placeholder='Due Date' width='100%' onChange={handleInput} value={task.dueDate} />
       <Container onClick={handleSubmit}>
         {plus}
+      </Container>
       </Container>
     </Container>
   )

@@ -6,13 +6,14 @@ import AddToList from '../AddToList';
 const TodoList = ({ taskList, addTask, handleCheckBox }) => {
 
   return (
-    <Container>
-      {taskList.map((taskItem, idx) => (
+    <Container width='100%'>
+      {taskList.map(taskItem => (
         <TodoListItem
-          key={idx}
-          id={idx}
-          task={taskItem.taskName}
-          dueDate={taskItem.dueDate}
+          key={taskItem.id}
+          id={taskItem.id}
+          task={taskItem.task_name}
+          dueDate={taskItem.due_date}
+          isDone={taskItem.is_done}
           handleCheckBox={handleCheckBox}
         />
       ))}
